@@ -4,7 +4,7 @@
   <div class="col-8 offset-2">
     <br /><br />
     <h2 class="mb-4">Add New Listing</h2>
-    <form action="/listings" method="post">
+    <form action="/listings" method="post" class="needs-validation" novalidate>
       <div class="mb-3">
         <label for="title" class="form-lable">Enter Title</label>
         <input
@@ -18,8 +18,11 @@
 
       <div class="mb-3">
         <label for="description" class="form-lable">Enter Description</label>
-        <textarea class="form-control" name="listing[description]" required></textarea>
-        
+        <textarea
+          class="form-control"
+          name="listing[description]"
+          required
+        ></textarea>
       </div>
       <div class="mb-3">
         <label class="form-lable" for="image">Enter Image Link or Url</label>
@@ -68,3 +71,23 @@
     <br /><br />
   </div>
 </div>
+<!-- <script>
+  // Bootstrap validation
+  (() => {
+    "use strict";
+    const forms = document.querySelectorAll(".needs-validation");
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script> -->

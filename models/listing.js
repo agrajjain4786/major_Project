@@ -6,7 +6,10 @@ const listingSchema = new Schema({
     type: String,
     required: true,
   },
-  description: String,
+  description: {
+    type: String,
+    required: true,
+  },
   image: {
     filname: {
       type: String,
@@ -21,9 +24,18 @@ const listingSchema = new Schema({
           : v,
     },
   },
-  price: Number,
-  location: String,
-  country: String,
+  price: {
+    type: Number,
+    required: true,
+  },
+  location: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
 });
 
 const Listing = mongoose.model("Listing", listingSchema);
