@@ -18,6 +18,8 @@
           value="<%=listing.title%>"
           required
         />
+        <div class="valid-feedback">title looks good</div>
+        <div class="invalid-feedback">please enter valid title</div>
       </div>
       <div class="mb-3">
         <label for="description" class="form-lable">Description</label>
@@ -27,8 +29,10 @@
           class="form-control"
           placeholder="enter new description"
         >
-          <%=listing.description%>"</textarea
+        <%=listing.description%>"</textarea
         >
+        <div class="valid-feedback">description looks good</div>
+        <div class="invalid-feedback">please enter valid description</div>
       </div>
       <div class="mb-3">
         <label class="form-lable" for="image">Image Link or Url</label>
@@ -39,6 +43,8 @@
           name="listing[image]"
           value="<%=listing.image%>"
         />
+        <div class="invalid-feedback">please enter valid image url</div>
+        <div class="valid-feedback">Image url looks good</div>
       </div>
       <div class="row">
         <div class="mb-3 col-md-4">
@@ -50,6 +56,8 @@
             name="listing[price]"
             value="<%=listing.price%>"
           />
+          <div class="valid-feedback">price looks good</div>
+          <div class="invalid-feedback">please enter valid price</div>
         </div>
         <div class="mb-3 col-md-8">
           <label class="form-lable" for="country">Country</label>
@@ -60,6 +68,8 @@
             name="listing[country]"
             value="<%=listing.country%>"
           />
+          <div class="valid-feedback">country looks good</div>
+          <div class="invalid-feedback">please enter valid country</div>
         </div>
       </div>
       <div class="mb-3">
@@ -71,6 +81,8 @@
           name="listing[location]"
           value="<%=listing.location%>"
         />
+        <div class="valid-feedback">location looks good</div>
+        <div class="invalid-feedback">please enter valid location</div>
       </div>
       <button class="btn btn-dark mt-4 edit-btn">Edit</button>
     </form>
