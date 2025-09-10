@@ -14,6 +14,8 @@
           placeholder="enter title"
           required
         />
+        <div class="valid-feedback">Title looks good</div>
+        <div class="invalid-feedback">Please enter valid title</div>
       </div>
 
       <div class="mb-3">
@@ -23,6 +25,8 @@
           name="listing[description]"
           required
         ></textarea>
+        <div class="valid-feedback">Discription looks good</div>
+        <div class="invalid-feedback">Please enter valid Discription</div>
       </div>
       <div class="mb-3">
         <label class="form-lable" for="image">Enter Image Link or Url</label>
@@ -43,6 +47,8 @@
             placeholder="1200"
             required
           />
+          <div class="valid-feedback">Price looks good</div>
+          <div class="invalid-feedback">Please enter valid Price</div>
         </div>
         <div class="mb-3 col-md-8">
           <label class="form-lable" for="country">Enter Country</label>
@@ -53,6 +59,8 @@
             placeholder="India"
             required
           />
+          <div class="valid-feedback">Country looks good</div>
+          <div class="invalid-feedback">Please enter valid Country</div>
         </div>
       </div>
 
@@ -65,29 +73,11 @@
           placeholder="Agra, Uttar-Pradesh"
           required
         />
+        <div class="valid-feedback">Location looks good</div>
+        <div class="invalid-feedback">Please enter valid Location</div>
       </div>
       <button class="btn btn-dark mt-4 add-btn">Add</button>
     </form>
     <br /><br />
   </div>
 </div>
-<!-- <script>
-  // Bootstrap validation
-  (() => {
-    "use strict";
-    const forms = document.querySelectorAll(".needs-validation");
-    Array.from(forms).forEach((form) => {
-      form.addEventListener(
-        "submit",
-        (event) => {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add("was-validated");
-        },
-        false
-      );
-    });
-  })();
-</script> -->
