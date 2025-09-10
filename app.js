@@ -5,6 +5,7 @@ const Listing = require("./models/listing.js");
 const path = require("path");
 const method = require("method-override");
 const ejsMate = require("ejs-mate");
+const wrapAsync = require("./utils/wrapAsync.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -27,11 +28,14 @@ app.get("/listings/new", (req, res) => {
   res.render("listings/new.ejs");
 });
 // create route
-app.post("/listings", async (req, res) => {
-  const newlisting = new Listing(req.body.listing);
-  await newlisting.save();
-  res.redirect("/listings");
-});
+app.post(
+  "/listings",
+  wrapAsync(async (req, res, next) => {
+    const newlisting = new Listing(req.body.listing);
+    await newlisting.save();
+    res.redirect("/listings");
+  })
+);
 
 // edit Route
 app.get("/listings/:id/edit", async (req, res) => {
@@ -86,6 +90,10 @@ main()
 async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/majoreProject");
 }
+
+app.use((err, req, res, next) => {
+  res.send("<h1>some thing went wronge</h1>");
+});
 
 let port = 8080;
 app.listen(port, () => {
