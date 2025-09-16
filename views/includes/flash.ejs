@@ -1,0 +1,47 @@
+<!-- success flash -->
+<%if(success && success.length){%>
+<div
+  class="alert alert-success alert-dismissible fade show col-6 offset-3"
+  role="alert"
+>
+  <%= success %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<%}%>
+
+<!-- delete flash -->
+<%if(deleted && deleted.length){%>
+<div
+  class="alert alert-warning alert-dismissible fades show col-6 offset-3"
+  role="alert"
+>
+  <%= deleted %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<%}%>
+
+<!-- error flash -->
+<%if(notExist && notExist.length){%>
+<div
+  class="alert alert-danger alert-dismissible fades show col-6 offset-3"
+  role="alert"
+>
+  <%= notExist %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<%}%>

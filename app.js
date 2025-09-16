@@ -5,6 +5,8 @@ const path = require("path");
 const method = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 const listings = require("./routes/listings.js");
 const reviews = require("./routes/review.js");
@@ -16,8 +18,29 @@ app.use(method("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 
+const sessionOptions = {
+  secret: "mysupersecreatcode",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 3 * 24 * 60 * 60 * 1000,
+    maxAge: 3 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  },
+};
+
 app.get("/", (req, res) => {
   res.send("root");
+});
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.deleted = req.flash("deleted");
+  res.locals.notExist = req.flash("notExist");
+  next();
 });
 
 app.use("/listings", listings);

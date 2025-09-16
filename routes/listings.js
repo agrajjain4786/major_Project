@@ -36,7 +36,12 @@ router.get(
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id).populate("reviews");
-    res.render("listings/show.ejs", { listing });
+    if (!listing) {
+      req.flash("notExist", `The Listing is does not exist any more!`);
+      res.redirect("/listings");
+    } else {
+      res.render("listings/show.ejs", { listing });
+    }
   })
 );
 // create route
@@ -46,6 +51,7 @@ router.post(
   wrapAsync(async (req, res, next) => {
     const newlisting = new Listing(req.body.listing);
     await newlisting.save();
+    req.flash("success", `New "${newlisting.title}" Listing Created!`);
     res.redirect("/listings");
   })
 );
@@ -68,7 +74,10 @@ router.put(
       throw new ExpressError(400, `Please send valid data to update listing`);
     }
     let { id } = req.params;
-    await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+    const newlisting = await Listing.findByIdAndUpdate(id, {
+      ...req.body.listing,
+    });
+    req.flash("success", `"${newlisting.title}" Listing Edited!`);
     res.redirect(`/listings/${id}`);
   })
 );
@@ -80,7 +89,7 @@ router.delete(
     let { id } = req.params;
     const deletedListing = await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
-
+    req.flash("deleted", `"${deletedListing.title}" listing is deleted`);
     res.redirect("/listings");
   })
 );
