@@ -31,12 +31,12 @@
 <%}%>
 
 <!-- error flash -->
-<%if(notExist && notExist.length){%>
+<%if(error && error.length){%>
 <div
   class="alert alert-danger alert-dismissible fades show col-6 offset-3"
   role="alert"
 >
-  <%= notExist %>
+  <%= error %>
   <button
     type="button"
     class="btn-close"

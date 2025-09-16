@@ -1,0 +1,46 @@
+<%- layout("/layouts/boilerplate.ejs") %>
+
+<div class="row mt-3">
+  <h1 class="col-6 offset-3">SignUp on GustHub</h1>
+  <div class="col-6 offset-3">
+    <form action="/signup" method="post" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="username" class="form-lable">Enter Username</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          id="username"
+          required
+        />
+        <div class="valid-feedback">Looks good</div>
+        <div class="invalid-feedback">Please enter valid Username</div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-lable">Enter Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          id="email"
+          required
+        />
+        <div class="valid-feedback">Looks good</div>
+        <div class="invalid-feedback">Please enter valid email</div>
+      </div>
+      <div class="mb-3">
+        <label for="Password" class="form-lable">Enter Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          id="password"
+          required
+        />
+        <div class="valid-feedback">Looks good</div>
+        <div class="invalid-feedback">Please enter password</div>
+      </div>
+      <button class="btn btn-success">SignUp</button>
+    </form>
+  </div>
+</div>
