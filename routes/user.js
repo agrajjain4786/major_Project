@@ -6,30 +6,31 @@ const passport = require("passport");
 const { saveRedirectUrl } = require("../middleware.js");
 const userController = require("../controllers/users.js");
 
-router.get("/signup", (req, res) => {
-  res.render("users/signup.ejs");
-});
+router
+  .route("/signup")
+  .get((req, res) => {
+    res.render("users/signup.ejs");
+  })
+  .post(wrapAsync(userController.signUp));
 
-router.post("/signup", wrapAsync(userController.signUp));
-
-router.get("/login", (req, res) => {
-  res.render("users/login.ejs");
-});
-
-router.post(
-  "/login",
-  saveRedirectUrl,
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    failureFlash: true,
-    // saveRedirectUrl,
-    // passport.authenticate("local", {
-    //   failureRedirect: "/login",
-    //   failureFlash: true,
-    // the main work of login is done by these ☝️⬆️ comments
-  }),
-  userController.login
-);
+router
+  .route("/login")
+  .get((req, res) => {
+    res.render("users/login.ejs");
+  })
+  .post(
+    saveRedirectUrl,
+    passport.authenticate("local", {
+      failureRedirect: "/login",
+      failureFlash: true,
+      // saveRedirectUrl,
+      // passport.authenticate("local", {
+      //   failureRedirect: "/login",
+      //   failureFlash: true,
+      // the main work of login is done by these ☝️⬆️ comments
+    }),
+    userController.login
+  );
 
 router.get("/logout", userController.logout);
 
