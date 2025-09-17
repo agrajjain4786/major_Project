@@ -12,14 +12,16 @@
     />
     <div class="card-body mt-3">
       <p class="card-text">
-        <%=listing.description%><br />
-        &#8377;<%=listing.price.toLocaleString("en-IN")%><br />
-        <%=listing.location%><br />
-        <%=listing.country%>
+        <p>Owned By: <i><%= listing.owner.username %></i> </p>
+        <p><%=listing.description%></p>
+        <p>&#8377;<%=listing.price.toLocaleString("en-IN")%></p>
+        <p><%=listing.location%></p>
+        <p><%=listing.country%></p>
       </p>
     </div>
   </div>
   <br />
+  <% if(user && user._id.equals(listing.owner._id)) {%>
   <div class="btns">
     <a
       href="/listings/<%=listing._id%>/edit"
@@ -30,9 +32,11 @@
       <button class="offset-3 btn btn-dark">Delete</button>
     </form>
   </div>
+  <% } %>
 
   <div class="col-8 offset-3">
-    <hr />
+    <% if(user) {%>
+      <hr />
     <h4>Leave a Review</h4>
     <form
       class="mb-3 needs-validation"
@@ -65,6 +69,7 @@
       </div>
       <button class="btn btn-outline-dark">Submit</button>
     </form>
+    <% } %>
     <hr />
     <h4>All Reviews</h4>
 
@@ -72,10 +77,11 @@
       <% for (review of listing.reviews) { %>
       <div class="review-card card col-5 mb-3 ms-3">
         <div class="card-body">
-          <h5 class="card-title mb-2">User-name</h5>
+          <h5 class="card-title mb-2">@<%= review.author.username%></h5>
           <p class="card-text mb-0" x><b>Comment: </b> <%= review.comment%></p>
           <p class="card-text"><b> Rating: </b> <%= review.rating%> stars</p>
         </div>
+        <% if(user && user._id.equals(review.author._id)) { %>
         <form
           class="mb-3"
           action="/listings/<%= listing._id%>/reviews/<%= review._id %>?_method=DELETE"
@@ -83,6 +89,7 @@
         >
           <button class="btn btn-dark btn-sm">Delete</button>
         </form>
+        <% } %>
       </div>
       <%} %>
     </div>
