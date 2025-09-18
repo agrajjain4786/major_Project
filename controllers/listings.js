@@ -27,7 +27,7 @@ module.exports.showListings = async (req, res) => {
     req.flash("notExist", `The Listing is does not exist any more!`);
     res.redirect("/listings");
   } else {
-    console.log(listing);
+    // console.log(listing);
     res.render("listings/show.ejs", { listing });
   }
 };
@@ -47,10 +47,10 @@ module.exports.createListings = async (req, res, next) => {
   newlisting.geometry = cordinate.body.features[0].geometry;
   newlisting.owner = req.user._id;
   newlisting.image = { url, filename };
-  let savedListing = await newlisting.save();
+  await newlisting.save();
   // console.log(savedListing);
   req.flash("success", `New "${newlisting.title}" Listing Created!`);
-  res.redirect("/listings", { savedListing });
+  res.redirect("/listings");
 };
 
 module.exports.editListings = async (req, res) => {
