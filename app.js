@@ -36,9 +36,9 @@ const sessionOptions = {
   },
 };
 
-app.get("/", (req, res) => {
-  res.send("root");
-});
+// app.get("/", (req, res) => {
+//   res.send("root");
+// });
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -79,7 +79,7 @@ main()
     console.log(err);
   });
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/majoreProject");
+  await mongoose.connect(process.env.ATLASDB_URL);
 }
 
 // This will run when no other route matched
